@@ -1,5 +1,5 @@
 streamlit
-acrcloud
+python-acrcloud
 requests
 streamlit_audiorec
 toml
