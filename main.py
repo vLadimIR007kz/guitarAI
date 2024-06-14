@@ -9,7 +9,7 @@ import toml
 def get_GPT_answer(artist_name:str, song_name:str):
 	comment = ""
 	url = "https://api.openai.com/v1/chat/completions"
-	api_key =config1['chatGPTsecret']
+	api_key =st.secrets['chatGPTsecret']
 	if simplifychords:
 		simplify="simplified"
 	else:
@@ -75,12 +75,10 @@ def get_GPT_answer(artist_name:str, song_name:str):
 		print(f"Ошибка: {err}")
 
 	return comment
-with open('main.toml', 'r') as f:
-	config1=toml.load(f)
 config = {
-	"key": config1['ACRcloudkey'],
-	"secret": config1['ACRcloudsecret'],
-	"host": config1['ACRcloudhost']
+	"key": st.secrets['ACRcloudkey'],
+	"secret": st.secrets['ACRcloudsecret'],
+	"host": st.secrets['ACRcloudhost']
 
 }
 acr = acrcloud.ACRcloud(config)
