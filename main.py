@@ -116,9 +116,13 @@ if wav_audio_data is not None:
 			f.write(wav_audio_data)
 	audio = 'myfile.wav'
 	answer = acr.recognize_audio(audio)
-	artist_name = answer.get('metadata').get('music')[0].get('artists')[0].get('name')
-	song_name = answer.get('metadata').get('music')[0].get('title')
-	an=st.text(artist_name)
-	sn=st.text(song_name)
-	main=st.text(get_GPT_answer(artist_name,song_name))
+	try:
+		artist_name = answer.get('metadata').get('music')[0].get('artists')[0].get('name')
+		song_name = answer.get('metadata').get('music')[0].get('title')
+		an=st.text(artist_name)
+		sn=st.text(song_name)
+		main=st.text(get_GPT_answer(artist_name,song_name))
+	except:
+		an = st.text("not found")
+		sn = st.text("not found")
 	os.remove('myfile.wav')
